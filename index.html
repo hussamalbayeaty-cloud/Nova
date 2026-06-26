@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نوفا للحلول | Nova Solutions | نۆڤا حەل</title>
+  <meta name="description" content="شركة نوفا للحلول - خدمات أعمال متكاملة واحترافية">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #4f46e5;
+      --accent-light: #eef2ff;
+      --accent-dark: #3730a3;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --surface-0: #f9fafb;
+      --surface-1: #f3f4f6;
+      --surface-2: #ffffff;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --success-bg: #f0fdf4;
+      --success-text: #166534;
+      --warning-bg: #fffbeb;
+      --warning-text: #92400e;
+      --danger-bg: #fef2f2;
+      --danger-text: #991b1b;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #6366f1;
+        --accent-light: #1e1b4b;
+        --accent-dark: #818cf8;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --text-muted: #6b7280;
+        --surface-0: #0f0f0f;
+        --surface-1: #1a1a1a;
+        --surface-2: #242424;
+        --border: #2d2d2d;
+        --border-strong: #404040;
+        --success-bg: #052e16;
+        --success-text: #86efac;
+        --warning-bg: #1c1407;
+        --warning-text: #fcd34d;
+        --danger-bg: #1c0505;
+        --danger-text: #fca5a5;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background: var(--surface-0);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      list-style: none;
+    }
+
+    .nav-links button {
+      background: none;
+      border: none;
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+
+    .nav-links button:hover { background: var(--surface-1); color: var(--text-primary); }
+    .nav-links button.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+
+    .lang-switcher { display: flex; gap: 4px; }
+
+    .lang-btn {
+      padding: 5px 11px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: none;
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all .15s;
+      white-space: nowrap;
+    }
+
+    .lang-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+    .lang-btn.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); font-weight: 500; }
+
+    /* ===== SECTIONS ===== */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 5rem 3rem 4rem;
+      text-align: center;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 5px 16px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 12px 28px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-primary:active { transform: scale(.98); }
+
+    .btn-secondary {
+      padding: 12px 28px;
+      background: none;
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-secondary:hover { background: var(--surface-1); }
+
+    /* STATS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 2rem 1rem;
+      text-align: center;
+      border-left: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-left: none; }
+    [dir="ltr"] .stat { border-left: none; border-right: 1px solid var(--border); }
+    [dir="ltr"] .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ===== ABOUT ===== */
+    .page-section { padding: 4rem 3rem; max-width: 960px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 680px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .page-section { padding: 3rem 1.5rem; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat { border: none; border-top: 1px solid var(--border); }
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 15px;
+    }
+
+    .values { display: flex; flex-direction: column; gap: 14px; }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 1.1rem 1.25rem;
+      background: var(--surface-2);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .value-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .value-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .value-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ===== SERVICES ===== */
+    .services-header { text-align: center; margin-bottom: 2.5rem; }
+    .services-header p { color: var(--text-secondary); font-size: 15px; max-width: 480px; margin: 0.5rem auto 0; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, box-shadow .2s, transform .15s;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .contact-info p { color: var(--text-secondary); font-size: 15px; line-height: 1.8; margin-bottom: 1.75rem; }
+
+    .info-items { display: flex; flex-direction: column; gap: 14px; }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .info-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: var(--surface-2);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .form-row { margin-bottom: 18px; }
+
+    .form-row label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface-0);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color .15s;
+      outline: none;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,.1); }
+
+    .form-row textarea { resize: vertical; min-height: 90px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .submit-btn:hover { background: var(--accent-dark); }
+
+    .success-msg {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: var(--success-bg);
+      color: var(--success-text);
+      border-radius: var(--radius);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      background: var(--surface-2);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ===== DIVIDER ===== */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* mobile nav menu */
+    .mobile-nav-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--text-primary);
+    }
+
+    @media (max-width: 680px) {
+      .mobile-nav-btn { display: flex; align-items: center; }
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--surface-2);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+        flex-direction: column;
+        gap: 4px;
+        z-index: 99;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu button { text-align: start; padding: 10px 14px; border-radius: var(--radius); background: none; border: none; font-family: inherit; font-size: 15px; color: var(--text-primary); cursor: pointer; }
+      .mobile-menu button:hover { background: var(--surface-1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">
+      <div class="logo-icon">🏢</div>
+      <span id="logo-text">نوفا للحلول</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><button class="active" onclick="showSection('home')" id="nav-home">الرئيسية</button></li>
+      <li><button onclick="showSection('about')" id="nav-about">من نحن</button></li>
+      <li><button onclick="showSection('services')" id="nav-services">خدماتنا</button></li>
+      <li><button onclick="showSection('contact')" id="nav-contact">تواصل معنا</button></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ar')">ع</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ku')">کو</button>
+      </div>
+      <button class="mobile-nav-btn" onclick="toggleMobileMenu()" aria-label="القائمة">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button onclick="showSection('home');closeMobile()" id="m-nav-home">الرئيسية</button>
+    <button onclick="showSection('about');closeMobile()" id="m-nav-about">من نحن</button>
+    <button onclick="showSection('services');closeMobile()" id="m-nav-services">خدماتنا</button>
+    <button onclick="showSection('contact');closeMobile()" id="m-nav-contact">تواصل معنا</button>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <div class="section active" id="home">
+    <div class="hero">
+      <div class="hero-badge" id="hero-badge">🚀 مرحباً بك</div>
+      <h1 id="hero-title">نوفا للحلول — شريكك في النجاح</h1>
+      <p id="hero-desc">نقدم حلولاً متكاملة وخدمات احترافية تُساعد شركتك على التميز والنمو في بيئة الأعمال الحديثة.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showSection('services')" id="hero-cta1">اكتشف خدماتنا</button>
+        <button class="btn-secondary" onclick="showSection('contact')" id="hero-cta2">تواصل معنا</button>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">+200</div><div class="stat-label" id="stat1">عميل راضٍ</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label" id="stat2">سنوات خبرة</div></div>
+      <div class="stat"><div class="stat-num">+50</div><div class="stat-label" id="stat3">مشروع ناجح</div></div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <div class="section" id="about">
+    <div class="page-section">
+      <span class="section-tag" id="about-tag">من نحن</span>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title" id="about-title">شركة رائدة في تقديم الحلول</h2>
+          <p id="about-p1">نوفا للحلول شركة متخصصة في تقديم خدمات الأعمال المتكاملة، تأسست بهدف مساعدة الشركات على تحقيق أهدافها وتجاوز تحدياتها.</p>
+          <p id="about-p2">نعمل مع فريق من المتخصصين المحترفين ذوي خبرة واسعة في مختلف المجالات، ونسعى دائماً لتقديم أفضل المستويات من الجودة والخدمة.</p>
+          <p id="about-p3">رسالتنا هي بناء شراكات طويلة الأمد مع عملائنا، والعمل معهم كفريق واحد لتحقيق النجاح المشترك.</p>
+        </div>
+        <div class="values">
+          <div class="value-item">
+            <div class="value-icon">🎯</div>
+            <div>
+              <div class="value-title" id="val1-title">الدقة والاحترافية</div>
+              <div class="value-desc" id="val1-desc">نلتزم بأعلى معايير الجودة في كل مشروع</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <div>
+              <div class="value-title" id="val2-title">العمل بروح الفريق</div>
+              <div class="value-desc" id="val2-desc">نؤمن بقوة التعاون لتحقيق النتائج المثلى</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💡</div>
+            <div>
+              <div class="value-title" id="val3-title">الابتكار المستمر</div>
+              <div class="value-desc" id="val3-desc">نبحث دائماً عن حلول إبداعية وحديثة</div>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌟</div>
+            <div>
+              <div class="value-title" id="val4-title">رضا العميل أولاً</div>
+              <div class="value-desc" id="val4-desc">نجاح عميلنا هو مقياس نجاحنا الحقيقي</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES ===== -->
+  <div class="section" id="services">
+    <div class="page-section">
+      <div class="services-header">
+        <span class="section-tag" id="srv-tag">خدماتنا</span>
+        <h2 class="section-title" id="srv-title">ما نقدمه لك</h2>
+        <p id="srv-desc">مجموعة متكاملة من الخدمات المصممة لتلبية احتياجات أعمالك</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon" style="background:#eef2ff;">📊</div>
+          <h3 id="s1-t">الاستشارات الإدارية</h3>
+          <p id="s1-d">نساعدك في وضع استراتيجيات عمل فعّالة وتطوير أداء شركتك لتحقيق أفضل النتائج.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#f0fdf4;">💻</div>
+          <h3 id="s2-t">الحلول التقنية</h3>
+          <p id="s2-d">تطوير الأنظمة والتطبيقات المخصصة التي تلبي احتياجات شركتك الرقمية بدقة عالية.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fffbeb;">📣</div>
+          <h3 id="s3-t">التسويق الرقمي</h3>
+          <p id="s3-d">حملات تسويقية مدروسة ومبتكرة لزيادة وصولك وتعزيز علامتك التجارية عبر الإنترنت.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fef2f2;">🛡️</div>
+          <h3 id="s4-t">الأمن والحماية</h3>
+          <p id="s4-d">حماية شاملة لبيانات شركتك وضمان أمان جميع العمليات والأنظمة الرقمية.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTACT ===== -->
+  <div class="section" id="contact">
+    <div class="page-section">
+      <span class="section-tag" id="ct-tag">تواصل معنا</span>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2 class="section-title" id="ct-title">نسعد بالتواصل معك</h2>
+          <p id="ct-desc">هل لديك مشروع أو استفسار؟ فريقنا مستعد لمساعدتك وتقديم أفضل الحلول المناسبة لاحتياجاتك.</p>
+          <div class="info-items">
+            <div class="info-item">
+              <div class="info-item-icon">📍</div>
+              <span id="ct-addr">النجف الأشرف، العراق</span>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon">📞</div>
+              <span dir="ltr">+964 780 000 0000</span>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon">✉️</div>
+              <span>info@nova-solutions.iq</span>
+            </div>
+            <div class="info-item">
+              <div class="info-item-icon">🕐</div>
+              <span id="ct-hours">الأحد – الخميس، ٩ص – ٥م</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="form-row">
+            <label id="lbl-name">الاسم الكامل</label>
+            <input type="text" id="inp-name" placeholder="محمد أحمد" required>
+          </div>
+          <div class="form-row">
+            <label id="lbl-email">البريد الإلكتروني</label>
+            <input type="email" id="inp-email" placeholder="example@mail.com" required>
+          </div>
+          <div class="form-row">
+            <label id="lbl-sub">الموضوع</label>
+            <select id="inp-sub">
+              <option id="opt1">استفسار عن الخدمات</option>
+              <option id="opt2">طلب عرض سعر</option>
+              <option id="opt3">شكوى أو اقتراح</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label id="lbl-msg">رسالتك</label>
+            <textarea id="inp-msg" placeholder="اكتب رسالتك هنا..."></textarea>
+          </div>
+          <button class="submit-btn" id="sub-btn" onclick="submitForm()">إرسال الرسالة</button>
+          <div class="success-msg" id="success-msg">✅ <span id="success-text">تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <footer>
+    <span id="footer-txt">© 2025 نوفا للحلول — جميع الحقوق محفوظة</span>
+  </footer>
+
+  <script>
+    const T = {
+      ar: {
+        lang:"ar", dir:"rtl",
+        logo:"نوفا للحلول",
+        nav:["الرئيسية","من نحن","خدماتنا","تواصل معنا"],
+        heroBadge:"🚀 مرحباً بك",
+        heroTitle:"نوفا للحلول — شريكك في النجاح",
+        heroDesc:"نقدم حلولاً متكاملة وخدمات احترافية تُساعد شركتك على التميز والنمو في بيئة الأعمال الحديثة.",
+        cta1:"اكتشف خدماتنا", cta2:"تواصل معنا",
+        stats:["عميل راضٍ","سنوات خبرة","مشروع ناجح"],
+        aboutTag:"من نحن",
+        aboutTitle:"شركة رائدة في تقديم الحلول",
+        aboutP1:"نوفا للحلول شركة متخصصة في تقديم خدمات الأعمال المتكاملة، تأسست بهدف مساعدة الشركات على تحقيق أهدافها وتجاوز تحدياتها.",
+        aboutP2:"نعمل مع فريق من المتخصصين المحترفين ذوي خبرة واسعة في مختلف المجالات، ونسعى دائماً لتقديم أفضل المستويات من الجودة والخدمة.",
+        aboutP3:"رسالتنا هي بناء شراكات طويلة الأمد مع عملائنا، والعمل معهم كفريق واحد لتحقيق النجاح المشترك.",
+        vals:[
+          ["الدقة والاحترافية","نلتزم بأعلى معايير الجودة في كل مشروع"],
+          ["العمل بروح الفريق","نؤمن بقوة التعاون لتحقيق النتائج المثلى"],
+          ["الابتكار المستمر","نبحث دائماً عن حلول إبداعية وحديثة"],
+          ["رضا العميل أولاً","نجاح عميلنا هو مقياس نجاحنا الحقيقي"]
+        ],
+        srvTag:"خدماتنا", srvTitle:"ما نقدمه لك",
+        srvDesc:"مجموعة متكاملة من الخدمات المصممة لتلبية احتياجات أعمالك",
+        srvs:[
+          ["الاستشارات الإدارية","نساعدك في وضع استراتيجيات عمل فعّالة وتطوير أداء شركتك لتحقيق أفضل النتائج."],
+          ["الحلول التقنية","تطوير الأنظمة والتطبيقات المخصصة التي تلبي احتياجات شركتك الرقمية بدقة عالية."],
+          ["التسويق الرقمي","حملات تسويقية مدروسة ومبتكرة لزيادة وصولك وتعزيز علامتك التجارية."],
+          ["الأمن والحماية","حماية شاملة لبيانات شركتك وضمان أمان جميع العمليات والأنظمة الرقمية."]
+        ],
+        ctTag:"تواصل معنا", ctTitle:"نسعد بالتواصل معك",
+        ctDesc:"هل لديك مشروع أو استفسار؟ فريقنا مستعد لمساعدتك وتقديم أفضل الحلول المناسبة لاحتياجاتك.",
+        addr:"النجف الأشرف، العراق", hours:"الأحد – الخميس، ٩ص – ٥م",
+        lbls:["الاسم الكامل","البريد الإلكتروني","الموضوع","رسالتك"],
+        phs:["محمد أحمد","example@mail.com","اكتب رسالتك هنا..."],
+        opts:["استفسار عن الخدمات","طلب عرض سعر","شكوى أو اقتراح"],
+        submit:"إرسال الرسالة",
+        successMsg:"✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.",
+        footer:"© 2025 نوفا للحلول — جميع الحقوق محفوظة"
+      },
+      en: {
+        lang:"en", dir:"ltr",
+        logo:"Nova Solutions",
+        nav:["Home","About Us","Services","Contact"],
+        heroBadge:"🚀 Welcome",
+        heroTitle:"Nova Solutions — Your Partner in Success",
+        heroDesc:"We provide comprehensive solutions and professional services to help your business stand out and grow in the modern business environment.",
+        cta1:"Explore Our Services", cta2:"Contact Us",
+        stats:["Happy Clients","Years of Experience","Successful Projects"],
+        aboutTag:"About Us",
+        aboutTitle:"A Leading Solutions Company",
+        aboutP1:"Nova Solutions is a company specializing in comprehensive business services, founded to help companies achieve their goals and overcome their challenges.",
+        aboutP2:"We work with a team of experienced professionals across various fields, always striving to deliver the highest levels of quality and service.",
+        aboutP3:"Our mission is to build long-term partnerships with our clients, working together as one team to achieve shared success.",
+        vals:[
+          ["Precision & Professionalism","We uphold the highest quality standards in every project"],
+          ["Team Spirit","We believe in the power of collaboration for optimal results"],
+          ["Continuous Innovation","We always seek creative and modern solutions"],
+          ["Client First","Our client's success is the true measure of ours"]
+        ],
+        srvTag:"Services", srvTitle:"What We Offer",
+        srvDesc:"A comprehensive suite of services designed to meet your business needs",
+        srvs:[
+          ["Business Consulting","We help you develop effective strategies and improve your company's performance."],
+          ["Tech Solutions","Custom systems and applications tailored precisely to your digital needs."],
+          ["Digital Marketing","Thoughtful campaigns to expand your reach and strengthen your brand online."],
+          ["Security & Protection","Comprehensive protection for your company's data and digital operations."]
+        ],
+        ctTag:"Contact", ctTitle:"We'd Love to Hear From You",
+        ctDesc:"Have a project or inquiry? Our team is ready to help and provide the best solutions for your needs.",
+        addr:"Najaf, Iraq", hours:"Sun – Thu, 9am – 5pm",
+        lbls:["Full Name","Email Address","Subject","Your Message"],
+        phs:["John Doe","example@mail.com","Write your message here..."],
+        opts:["Service Inquiry","Request a Quote","Complaint or Suggestion"],
+        submit:"Send Message",
+        successMsg:"✅ Your message was sent successfully! We'll be in touch soon.",
+        footer:"© 2025 Nova Solutions — All Rights Reserved"
+      },
+      ku: {
+        lang:"ku", dir:"rtl",
+        logo:"نۆڤا حەل",
+        nav:["سەرەکی","دەربارەی ئێمە","خزمەتگوزارییەکان","پەیوەندی"],
+        heroBadge:"🚀 بەخێربێیت",
+        heroTitle:"نۆڤا حەل — هاوبەشەکەت لە سەرکەوتندا",
+        heroDesc:"چارەسەری تەواو و خزمەتگوزاری پیشەیی پێشکەش دەکەین کە یارمەتی کاروباری تۆ دەدات بدرەخشێت و گەشە بکات.",
+        cta1:"خزمەتگوزارییەکانمان بدۆزەوە", cta2:"پەیوەندیمان پێوە بکە",
+        stats:["کڕیاری خۆشحاڵ","ساڵی ئەزموون","پرۆژەی سەرکەوتوو"],
+        aboutTag:"دەربارەی ئێمە",
+        aboutTitle:"کۆمپانیایەکی پێشەنگ لە پێشکەشکردنی چارەسەر",
+        aboutP1:"نۆڤا حەل کۆمپانیایەکە تایبەت بە پێشکەشکردنی خزمەتگوزاری کاروباری تەواو، دامەزراوە بە ئامانجی یارمەتیدانی کۆمپانیاکان.",
+        aboutP2:"لەگەڵ تیمێکی متمانەپێکراو و شارەزا لە بواری جیاجیا کار دەکەین، هەمیشە دەمانەوێت باشترین ئاستی کوالیتی پێشکەش بکەین.",
+        aboutP3:"ئامانجمان بنیاتنانی هاوبەشی درێژخایەنە لەگەڵ کڕیارەکانمانە، کار بکەین وەک تیمێکی یەک بۆ دەستیەتنان بە سەرکەوتنی هاوبەش.",
+        vals:[
+          ["تەقەزانە و پیشەیی","بەرزترین ستانداردی کوالیتی لە هەر پرۆژەیەکدا بەجێ دەهێنین"],
+          ["رۆحی تیم","باوەڕمان بە هێزی هاوکاری هەیە بۆ دەستیەتنان بە باشترین ئەنجام"],
+          ["داهێنانی بەردەوام","هەمیشە لە دووی چارەسەری داهێنانە و نوێ دەگەڕێین"],
+          ["کڕیار یەکەم","سەرکەوتنی کڕیارمان پێوەری ڕاستەقینەی سەرکەوتنی ئێمەیە"]
+        ],
+        srvTag:"خزمەتگوزارییەکان", srvTitle:"چی پێشکەش دەکەین",
+        srvDesc:"کۆمەڵێک خزمەتگوزاری تەواو دیزاین کراوە بۆ دابینکردنی پێداویستیەکانی کاروباری تۆ",
+        srvs:[
+          ["ئاکاری بازرگانی","یارمەتیت دەدەین ستراتیژیە کاریگەرەکان دابنێیت و کارایی کۆمپانیاکەت باشتر بکەی."],
+          ["چارەسەری تەکنەلۆژی","دامەزراندنی سیستەم و ئەپلیکەیشنی تایبەت بۆ پێداویستیە دیجیتاڵیەکانی تۆ."],
+          ["مارکیتینگی دیجیتاڵ","کەمپینی تیلیف کراو بۆ زیادکردنی تەواوی تۆ و بەهێزکردنی براندەکەت."],
+          ["ئارامی و پاراستن","پاراستنی گشتی داتای کۆمپانیاکەت و دڵنیابوونی ئارامی کار و سیستەمە دیجیتاڵیەکان."]
+        ],
+        ctTag:"پەیوەندی", ctTitle:"خۆشحاڵ دەبین لە بیستنت",
+        ctDesc:"پرۆژەیەکت هەیە یان پرسیارێک؟ تیمەکەمان ئامادەیە یارمەتی بدات و باشترین چارەسەر پێشکەش بکات.",
+        addr:"نەجەف، عێراق", hours:"یەکشەممە – پێنجشەممە، ٩ب – ٥ئ",
+        lbls:["ناوی تەواو","ئیمەیڵی ئەلیکترۆنی","بابەت","پەیامەکەت"],
+        phs:["ناوەکەت","example@mail.com","پەیامەکەت لێرە بنووسە..."],
+        opts:["پرسیار دەربارەی خزمەتگوزارییەکان","داواکاری نرخ","گیرۆدە یان پێشنیار"],
+        submit:"ناردنی پەیام",
+        successMsg:"✅ پەیامەکەت بە سەرکەوتوویی نێردرا! بەزووی پەیوەندیت پێوە دەکەین.",
+        footer:"© 2025 نۆڤا حەل — هەموو مافەکان پارێزراون"
+      }
+    };
+
+    let currentLang = 'ar';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const t = T[lang];
+      document.documentElement.setAttribute('lang', t.lang);
+      document.documentElement.setAttribute('dir', t.dir);
+      document.getElementById('logo-text').textContent = t.logo;
+      const navIds = ['nav-home','nav-about','nav-services','nav-contact'];
+      const mNavIds = ['m-nav-home','m-nav-about','m-nav-services','m-nav-contact'];
+      navIds.forEach((id,i) => { if(document.getElementById(id)) document.getElementById(id).textContent = t.nav[i]; });
+      mNavIds.forEach((id,i) => { if(document.getElementById(id)) document.getElementById(id).textContent = t.nav[i]; });
+      document.querySelectorAll('.lang-btn').forEach((b,i) => b.classList.toggle('active', ['ar','en','ku'][i]===lang));
+      document.getElementById('hero-badge').textContent = t.heroBadge;
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-desc').textContent = t.heroDesc;
+      document.getElementById('hero-cta1').textContent = t.cta1;
+      document.getElementById('hero-cta2').textContent = t.cta2;
+      document.getElementById('stat1').textContent = t.stats[0];
+      document.getElementById('stat2').textContent = t.stats[1];
+      document.getElementById('stat3').textContent = t.stats[2];
+      document.getElementById('about-tag').textContent = t.aboutTag;
+      document.getElementById('about-title').textContent = t.aboutTitle;
+      document.getElementById('about-p1').textContent = t.aboutP1;
+      document.getElementById('about-p2').textContent = t.aboutP2;
+      document.getElementById('about-p3').textContent = t.aboutP3;
+      [['val1-title','val1-desc'],['val2-title','val2-desc'],['val3-title','val3-desc'],['val4-title','val4-desc']].forEach(([ti,di],i)=>{
+        if(document.getElementById(ti)) document.getElementById(ti).textContent = t.vals[i][0];
+        if(document.getElementById(di)) document.getElementById(di).textContent = t.vals[i][1];
+      });
+      document.getElementById('srv-tag').textContent = t.srvTag;
+      document.getElementById('srv-title').textContent = t.srvTitle;
+      document.getElementById('srv-desc').textContent = t.srvDesc;
+      [['s1-t','s1-d'],['s2-t','s2-d'],['s3-t','s3-d'],['s4-t','s4-d']].forEach(([ti,di],i)=>{
+        document.getElementById(ti).textContent = t.srvs[i][0];
+        document.getElementById(di).textContent = t.srvs[i][1];
+      });
+      document.getElementById('ct-tag').textContent = t.ctTag;
+      document.getElementById('ct-title').textContent = t.ctTitle;
+      document.getElementById('ct-desc').textContent = t.ctDesc;
+      document.getElementById('ct-addr').textContent = t.addr;
+      document.getElementById('ct-hours').textContent = t.hours;
+      document.getElementById('lbl-name').textContent = t.lbls[0];
+      document.getElementById('lbl-email').textContent = t.lbls[1];
+      document.getElementById('lbl-sub').textContent = t.lbls[2];
+      document.getElementById('lbl-msg').textContent = t.lbls[3];
+      document.getElementById('inp-name').placeholder = t.phs[0];
+      document.getElementById('inp-email').placeholder = t.phs[1];
+      document.getElementById('inp-msg').placeholder = t.phs[2];
+      ['opt1','opt2','opt3'].forEach((id,i) => { if(document.getElementById(id)) document.getElementById(id).textContent = t.opts[i]; });
+      document.getElementById('sub-btn').textContent = t.submit;
+      document.getElementById('success-text').textContent = t.successMsg;
+      document.getElementById('footer-txt').textContent = t.footer;
+    }
+
+    function showSection(name) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(name).classList.add('active');
+      const secs = ['home','about','services','contact'];
+      ['nav-home','nav-about','nav-services','nav-contact'].forEach((id,i) => {
+        const el = document.getElementById(id);
+        if(el) el.classList.toggle('active', secs[i]===name);
+      });
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function submitForm() {
+      const name = document.getElementById('inp-name').value;
+      const email = document.getElementById('inp-email').value;
+      if(!name || !email) return;
+      const msg = document.getElementById('success-msg');
+      msg.style.display = 'block';
+      document.getElementById('inp-name').value = '';
+      document.getElementById('inp-email').value = '';
+      document.getElementById('inp-msg').value = '';
+      setTimeout(() => { msg.style.display = 'none'; }, 5000);
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    function closeMobile() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
