@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات سام | Sam Services</title>
+  <meta name="description" content="خدمات سام - خدمات احترافية بدقة وسرعة عالية وأجور متواضعة">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --accent:#1d4ed8;
+      --accent-light:#eff6ff;
+      --accent-dark:#1e40af;
+      --gold:#f59e0b;
+      --gold-light:#fffbeb;
+      --text-primary:#0f172a;
+      --text-secondary:#475569;
+      --text-muted:#94a3b8;
+      --surface-0:#f8fafc;
+      --surface-1:#f1f5f9;
+      --surface-2:#ffffff;
+      --border:#e2e8f0;
+      --border-strong:#cbd5e1;
+      --radius:10px;
+      --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo',sans-serif;background:var(--surface-0);color:var(--text-primary);line-height:1.7}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:var(--surface-2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;gap:1rem}
+    .logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;color:var(--accent);text-decoration:none;white-space:nowrap}
+    .logo-icon{width:38px;height:38px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .nav-links{display:flex;gap:2px;list-style:none}
+    .nav-links button{background:none;border:none;padding:7px 13px;border-radius:var(--radius);font-size:14px;font-family:inherit;color:var(--text-secondary);cursor:pointer;transition:all .15s;white-space:nowrap}
+    .nav-links button:hover{background:var(--surface-1);color:var(--text-primary)}
+    .nav-links button.active{background:var(--accent-light);color:var(--accent);font-weight:600}
+    .lang-switcher{display:flex;gap:4px}
+    .lang-btn{padding:5px 11px;border-radius:20px;border:1px solid var(--border);background:none;font-size:12px;font-family:inherit;cursor:pointer;color:var(--text-secondary);transition:all .15s}
+    .lang-btn.active{background:var(--accent-light);color:var(--accent);border-color:var(--accent);font-weight:600}
+    .mobile-menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:var(--radius);padding:6px 10px;cursor:pointer;font-size:20px;color:var(--text-primary)}
+    .mobile-menu{display:none;position:absolute;top:62px;left:0;right:0;background:var(--surface-2);border-bottom:1px solid var(--border);padding:1rem;flex-direction:column;gap:4px;z-index:99}
+    .mobile-menu.open{display:flex}
+    .mobile-menu button{text-align:right;padding:10px 14px;border-radius:var(--radius);background:none;border:none;font-family:inherit;font-size:15px;color:var(--text-primary);cursor:pointer}
+    .mobile-menu button:hover{background:var(--surface-1)}
+
+    /* SECTIONS */
+    .section{display:none}
+    .section.active{display:block}
+
+    /* HERO */
+    .hero{padding:4.5rem 2rem 3.5rem;text-align:center;background:linear-gradient(135deg,#1d4ed8 0%,#1e40af 60%,#1e3a8a 100%);color:#fff;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+    .hero-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+    .hero-badge{display:inline-block;padding:5px 16px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:13px;font-weight:500;margin-bottom:1.25rem;color:#fff}
+    .hero h1{font-size:clamp(26px,5vw,44px);font-weight:700;line-height:1.2;margin-bottom:1rem;color:#fff}
+    .hero p{font-size:16px;opacity:.9;max-width:520px;margin:0 auto 2rem;line-height:1.8}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-white{padding:11px 26px;background:#fff;color:var(--accent);border:none;border-radius:var(--radius);font-size:14px;font-family:inherit;font-weight:600;cursor:pointer;transition:all .15s}
+    .btn-white:hover{background:#f0f9ff}
+    .btn-outline-white{padding:11px 26px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);border-radius:var(--radius);font-size:14px;font-family:inherit;cursor:pointer;transition:all .15s}
+    .btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface-2);border-bottom:1px solid var(--border)}
+    .stat{padding:1.75rem 1rem;text-align:center;border-left:1px solid var(--border)}
+    .stat:last-child{border-left:none}
+    .stat-num{font-size:30px;font-weight:700;color:var(--accent);line-height:1}
+    .stat-label{font-size:13px;color:var(--text-muted);margin-top:5px}
+
+    /* PAGE */
+    .page-section{padding:3.5rem 2rem;max-width:980px;margin:0 auto}
+    .section-tag{display:inline-block;padding:5px 14px;background:var(--accent-light);color:var(--accent);border-radius:20px;font-size:12px;font-weight:600;margin-bottom:.75rem}
+    .section-title{font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--text-primary);margin-bottom:.5rem}
+    .section-subtitle{font-size:15px;color:var(--text-secondary);margin-bottom:2rem}
+
+    /* ABOUT */
+    .about-highlight{background:linear-gradient(135deg,var(--accent-light),#e0f2fe);border:1px solid #bfdbfe;border-radius:14px;padding:2rem;margin-bottom:2rem}
+    .about-highlight p{color:var(--text-secondary);line-height:1.9;font-size:15px;margin-bottom:.75rem}
+    .about-highlight p:last-child{margin-bottom:0}
+    .about-vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:2rem}
+    .val-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:var(--shadow);text-align:center}
+    .val-icon{font-size:28px;margin-bottom:.5rem}
+    .val-title{font-size:14px;font-weight:600;color:var(--text-primary)}
+    .val-desc{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+    /* SERVICES */
+    .srv-intro{background:var(--accent);color:#fff;border-radius:14px;padding:1.75rem 2rem;margin-bottom:2rem;text-align:center}
+    .srv-intro p{font-size:15px;opacity:.95;line-height:1.8}
+    .srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .srv-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:1.75rem 1.5rem;box-shadow:var(--shadow);transition:all .2s;cursor:default}
+    .srv-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+    .srv-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1rem}
+    .srv-card h3{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px}
+    .srv-card p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+    .srv-details{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+    .srv-details li{font-size:12px;color:var(--text-muted);margin-bottom:4px;padding-right:12px;position:relative;list-style:none}
+    .srv-details li::before{content:'✓';position:absolute;right:0;color:var(--accent);font-weight:700}
+
+    /* DEPOSIT */
+    .dep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+    .dep-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;box-shadow:var(--shadow);text-align:center;transition:all .2s}
+    .dep-card:hover{border-color:var(--gold);box-shadow:0 4px 12px rgba(245,158,11,.15);transform:translateY(-2px)}
+    .dep-icon{font-size:36px;margin-bottom:.75rem}
+    .dep-name{font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:6px}
+    .dep-desc{font-size:12px;color:var(--text-secondary);line-height:1.6}
+    .dep-badge{display:inline-block;margin-top:8px;padding:3px 10px;background:var(--gold-light);color:#92400e;border-radius:20px;font-size:11px;font-weight:600}
+    .dep-contact{margin-top:2rem;background:var(--gold-light);border:1px solid #fde68a;border-radius:14px;padding:1.5rem 2rem;text-align:center}
+    .dep-contact p{color:#92400e;font-size:14px;margin-bottom:1rem}
+    .dep-contact-btn{display:inline-block;padding:10px 24px;background:var(--gold);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-family:inherit;font-weight:600;cursor:pointer}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;margin-top:2rem}
+    .contact-info-p{color:var(--text-secondary);font-size:15px;line-height:1.8;margin-bottom:1.5rem}
+    .info-items{display:flex;flex-direction:column;gap:13px}
+    .info-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-secondary)}
+    .info-icon{width:38px;height:38px;border-radius:var(--radius);background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+    .contact-form-wrap{background:var(--surface-2);border-radius:14px;border:1px solid var(--border);padding:2rem;box-shadow:var(--shadow)}
+    .form-row{margin-bottom:16px}
+    .form-row label{display:block;font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:6px}
+    .form-row input,.form-row textarea,.form-row select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface-0);color:var(--text-primary);font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
+    .form-row input:focus,.form-row textarea:focus,.form-row select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(29,78,216,.1)}
+    .form-row textarea{resize:vertical;min-height:90px}
+    .submit-btn{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-family:inherit;font-weight:600;cursor:pointer;transition:background .15s}
+    .submit-btn:hover{background:var(--accent-dark)}
+    .success-msg{display:none;margin-top:12px;padding:12px 16px;background:#f0fdf4;color:#166534;border-radius:var(--radius);font-size:14px;text-align:center}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--text-muted);font-size:13px;background:var(--surface-2)}
+    footer strong{color:var(--accent)}
+
+    /* RESPONSIVE */
+    @media(max-width:680px){
+      .nav-links{display:none}
+      .mobile-menu-btn{display:flex;align-items:center}
+      .contact-grid,.about-grid{grid-template-columns:1fr}
+      .stats-row{grid-template-columns:1fr}
+      .stat{border-left:none;border-top:1px solid var(--border)}
+      .stat:first-child{border-top:none}
+      .page-section{padding:2.5rem 1.25rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-icon">⚡</div>
+    <span id="logo-text">خدمات سام</span>
+  </a>
+  <ul class="nav-links">
+    <li><button class="active" onclick="showSection('home')" id="nav-home">الرئيسية</button></li>
+    <li><button onclick="showSection('about')" id="nav-about">عن الشركة</button></li>
+    <li><button onclick="showSection('services')" id="nav-services">الخدمات</button></li>
+    <li><button onclick="showSection('deposit')" id="nav-deposit">الإيداع</button></li>
+    <li><button onclick="showSection('contact')" id="nav-contact">تواصل معنا</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ar')">ع</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ku')">کو</button>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMobile()">☰</button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mob-menu">
+  <button onclick="showSection('home');closeMob()" id="m-home">الرئيسية</button>
+  <button onclick="showSection('about');closeMob()" id="m-about">عن الشركة</button>
+  <button onclick="showSection('services');closeMob()" id="m-services">الخدمات</button>
+  <button onclick="showSection('deposit');closeMob()" id="m-deposit">الإيداع</button>
+  <button onclick="showSection('contact');closeMob()" id="m-contact">تواصل معنا</button>
+</div>
+
+<!-- ===== HOME ===== -->
+<div class="section active" id="home">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" id="h-badge">⚡ خدمات احترافية وسريعة</div>
+      <h1 id="h-title">خدمات سام<br>جودة لا تُقارن بأسعار في متناول الجميع</h1>
+      <p id="h-desc">نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة. تعديل صور، بيانات Excel، تحويل خط يد، مونتاج فيديو والمزيد.</p>
+      <div class="hero-btns">
+        <button class="btn-white" onclick="showSection('services')" id="h-cta1">شاهد خدماتنا</button>
+        <button class="btn-outline-white" onclick="showSection('contact')" id="h-cta2">تواصل معنا</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">+500</div><div class="stat-label" id="st1">عميل راضٍ</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label" id="st2">خدمات متخصصة</div></div>
+    <div class="stat"><div class="stat-num">24</div><div class="stat-label" id="st3">ساعة تسليم سريع</div></div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div class="section" id="about">
+  <div class="page-section">
+    <span class="section-tag" id="ab-tag">عن الشركة</span>
+    <h2 class="section-title" id="ab-title">من نحن — خدمات سام</h2>
+    <p class="section-subtitle" id="ab-sub">نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة</p>
+    <div class="about-highlight">
+      <p id="ab-p1">خدمات سام هي منصة خدمية متكاملة متخصصة في تقديم مجموعة واسعة من الخدمات الرقمية والإدارية بجودة احترافية عالية. أُسست بهدف توفير حلول عملية وسريعة تلبي احتياجات الأفراد والشركات والمؤسسات التعليمية في العراق والمنطقة.</p>
+      <p id="ab-p2">نؤمن بأن الجودة لا يجب أن تكون مكلفة، لذلك نحرص على تقديم خدماتنا بأسعار في متناول الجميع دون أي تنازل عن مستوى الدقة والاحترافية. فريقنا يتكون من متخصصين ذوي خبرة وكفاءة عالية في مجالاتهم.</p>
+      <p id="ab-p3">نخدم طيفاً واسعاً من العملاء يشمل الطلاب والأساتذة والشركات والمكاتب والأفراد، ونسعى دائماً لتسليم كل عمل في الوقت المحدد وبأعلى معايير الجودة.</p>
+    </div>
+    <div class="about-vals">
+      <div class="val-card">
+        <div class="val-icon">🎯</div>
+        <div class="val-title" id="v1t">الدقة والإتقان</div>
+        <div class="val-desc" id="v1d">نتعامل مع كل عمل باحترافية تامة وانتباه للتفاصيل</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">⚡</div>
+        <div class="val-title" id="v2t">السرعة في التسليم</div>
+        <div class="val-desc" id="v2d">نلتزم بالمواعيد المتفق عليها دون تأخير</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">💰</div>
+        <div class="val-title" id="v3t">أسعار متواضعة</div>
+        <div class="val-desc" id="v3d">خدمات عالية الجودة بأسعار في متناول الجميع</div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🔒</div>
+        <div class="val-title" id="v4t">خصوصية وأمان</div>
+        <div class="val-desc" id="v4d">ملفاتك وبياناتك في أمان تام لدينا</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<div class="section" id="services">
+  <div class="page-section">
+    <span class="section-tag" id="sv-tag">خدماتنا</span>
+    <h2 class="section-title" id="sv-title">خدماتنا المتخصصة</h2>
+    <div class="srv-intro">
+      <p id="sv-intro">نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة — أرسل ملفاتك وتواصل معنا لتنفيذ طلبك بأسرع وقت</p>
+    </div>
+    <div class="srv-grid">
+
+      <!-- خدمة 1 -->
+      <div class="srv-card">
+        <div class="srv-icon" style="background:#eff6ff">🖼️</div>
+        <h3 id="s1h">تعديل الصور</h3>
+        <p id="s1p">أرسل صورك وأخبرنا بالتعديلات المطلوبة، وسنعيدها إليك بشكل احترافي.</p>
+        <ul class="srv-details" id="s1l">
+          <li>إزالة الخلفية وتغييرها</li>
+          <li>تحسين جودة الصورة</li>
+          <li>إضافة نصوص وتصاميم</li>
+          <li>تعديل الألوان والإضاءة</li>
+          <li>دمج الصور وتركيبها</li>
+        </ul>
+      </div>
+
+      <!-- خدمة 2 -->
+      <div class="srv-card">
+        <div class="srv-icon" style="background:#f0fdf4">📊</div>
+        <h3 id="s2h">إدخال البيانات في Excel</h3>
+        <p id="s2p">ندخل بياناتك وننظمها ونعدلها في برنامج Microsoft Excel بدقة عالية.</p>
+        <ul class="srv-details" id="s2l">
+          <li>إدخال وتنظيم البيانات</li>
+          <li>إنشاء الجداول والتنسيق</li>
+          <li>المعادلات والحسابات</li>
+          <li>الرسوم البيانية والتقارير</li>
+          <li>تعديل وتحديث الملفات</li>
+        </ul>
+      </div>
+
+      <!-- خدمة 3 -->
+      <div class="srv-card">
+        <div class="srv-icon" style="background:#faf5ff">✍️</div>
+        <h3 id="s3h">تحويل خط اليد</h3>
+        <p id="s3p">نحول كتابتك اليدوية إلى ملفات Word أو PDF منسقة واحترافية.</p>
+        <ul class="srv-details" id="s3l">
+          <li>تنضيد أسئلة الامتحانات</li>
+          <li>كتابة وتنسيق الكتب</li>
+          <li>المجلات والمقالات العلمية</li>
+          <li>الأبحاث والرسائل الجامعية</li>
+          <li>تسليم بصيغة Word أو PDF</li>
+        </ul>
+      </div>
+
+      <!-- خدمة 4 -->
+      <div class="srv-card">
+        <div class="srv-icon" style="background:#fff7ed">🎬</div>
+        <h3 id="s4h">تعديل ومونتاج الفيديو</h3>
+        <p id="s4p">نقدم خدمات مونتاج وتعديل الفيديو بجودة عالية لمختلف الأغراض.</p>
+        <ul class="srv-details" id="s4l">
+          <li>مونتاج وتقطيع الفيديو</li>
+          <li>إضافة موسيقى ومؤثرات</li>
+          <li>إضافة نصوص وترجمة</li>
+          <li>تحسين جودة الصورة والصوت</li>
+          <li>إنتاج ريلز وفيديوهات قصيرة</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== DEPOSIT ===== -->
+<div class="section" id="deposit">
+  <div class="page-section">
+    <span class="section-tag" id="dp-tag">الإيداع</span>
+    <h2 class="section-title" id="dp-title">طرق الإيداع والدفع</h2>
+    <p class="section-subtitle" id="dp-sub">نوفر لكم طرق دفع متعددة ومريحة لإتمام معاملاتكم بسهولة</p>
+    <div class="dep-grid">
+
+      <div class="dep-card">
+        <div class="dep-icon">📱</div>
+        <div class="dep-name" id="dp1n">زين كاش</div>
+        <div class="dep-desc" id="dp1d">ادفع بسهولة عبر محفظة زين كاش الإلكترونية بدون رسوم إضافية</div>
+        <span class="dep-badge">متاح</span>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-icon">💳</div>
+        <div class="dep-name" id="dp2n">سوبر كي</div>
+        <div class="dep-desc" id="dp2d">الدفع عبر منصة سوبر كي الإلكترونية بسرعة وأمان</div>
+        <span class="dep-badge">متاح</span>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-icon">🌍</div>
+        <div class="dep-name" id="dp3n">ويسترن يونيون</div>
+        <div class="dep-desc" id="dp3d">التحويل الدولي عبر ويسترن يونيون من أي مكان في العالم</div>
+        <span class="dep-badge">متاح</span>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-icon">🏦</div>
+        <div class="dep-name" id="dp4n">حوالة داخلية</div>
+        <div class="dep-desc" id="dp4d">تحويل مباشر عبر شركات الحوالة الداخلية في جميع محافظات العراق</div>
+        <span class="dep-badge">متاح</span>
+      </div>
+
+      <div class="dep-card" style="border-color:var(--gold);background:var(--gold-light)">
+        <div class="dep-icon">💬</div>
+        <div class="dep-name" id="dp5n">طرق أخرى</div>
+        <div class="dep-desc" id="dp5d">هل لديك طريقة دفع أخرى؟ تواصل معنا وسنجد الحل المناسب لك</div>
+        <button class="dep-contact-btn" onclick="showSection('contact')" id="dp5btn" style="margin-top:10px;padding:7px 16px;font-size:13px;background:var(--gold);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:inherit;font-weight:600">تواصل معنا</button>
+      </div>
+
+    </div>
+    <div class="dep-contact" style="margin-top:2rem">
+      <p id="dp-note">💡 لأي استفسار حول طرق الدفع أو لمعرفة أرقام الحسابات، تواصل معنا مباشرة وسنرد عليك في أقرب وقت.</p>
+      <button class="dep-contact-btn" onclick="showSection('contact')" id="dp-ctabtn">📞 تواصل معنا الآن</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="section" id="contact">
+  <div class="page-section">
+    <span class="section-tag" id="ct-tag">تواصل معنا</span>
+    <h2 class="section-title" id="ct-title">نسعد بخدمتك</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-info-p" id="ct-desc">هل لديك طلب أو استفسار؟ أرسل لنا تفاصيل طلبك وسيرد عليك فريقنا في أقرب وقت ممكن.</p>
+        <div class="info-items">
+          <div class="info-item"><div class="info-icon">📍</div><span id="ct-addr">النجف الأشرف، العراق</span></div>
+          <div class="info-item"><div class="info-icon">📞</div><span dir="ltr">+964 780 000 0000</span></div>
+          <div class="info-item"><div class="info-icon">💬</div><span id="ct-wa">واتساب متاح للتواصل</span></div>
+          <div class="info-item"><div class="info-icon">🕐</div><span id="ct-hours">يومياً ٩ص – ١٠م</span></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="form-row"><label id="fl-name">الاسم الكامل</label><input type="text" id="inp-name" placeholder="اسمك الكريم"></div>
+        <div class="form-row"><label id="fl-phone">رقم الهاتف / واتساب</label><input type="tel" id="inp-phone" placeholder="+964 7XX XXX XXXX"></div>
+        <div class="form-row">
+          <label id="fl-srv">الخدمة المطلوبة</label>
+          <select id="inp-srv">
+            <option id="o1">تعديل الصور</option>
+            <option id="o2">إدخال البيانات في Excel</option>
+            <option id="o3">تحويل خط اليد إلى Word/PDF</option>
+            <option id="o4">تعديل ومونتاج الفيديو</option>
+            <option id="o5">استفسار عن الإيداع</option>
+            <option id="o6">خدمة أخرى</option>
+          </select>
+        </div>
+        <div class="form-row"><label id="fl-msg">تفاصيل الطلب</label><textarea id="inp-msg" placeholder="اكتب تفاصيل طلبك هنا..."></textarea></div>
+        <button class="submit-btn" id="sub-btn" onclick="sendForm()">إرسال الطلب ⚡</button>
+        <div class="success-msg" id="success-box">✅ تم استلام طلبك! سنتواصل معك قريباً جداً.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong id="ft-name">خدمات سام</strong> — <span id="ft-txt">جميع الحقوق محفوظة © 2025 | نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة</span>
+</footer>
+
+<script>
+const T={
+  ar:{
+    dir:"rtl",lang:"ar",
+    logo:"خدمات سام",
+    nav:["الرئيسية","عن الشركة","الخدمات","الإيداع","تواصل معنا"],
+    badge:"⚡ خدمات احترافية وسريعة",
+    heroTitle:"خدمات سام\nجودة لا تُقارن بأسعار في متناول الجميع",
+    heroDesc:"نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة. تعديل صور، بيانات Excel، تحويل خط يد، مونتاج فيديو والمزيد.",
+    cta1:"شاهد خدماتنا",cta2:"تواصل معنا",
+    stats:["عميل راضٍ","خدمات متخصصة","ساعة تسليم سريع"],
+    abTag:"عن الشركة",abTitle:"من نحن — خدمات سام",
+    abSub:"نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة",
+    abP1:"خدمات سام هي منصة خدمية متكاملة متخصصة في تقديم مجموعة واسعة من الخدمات الرقمية والإدارية بجودة احترافية عالية. أُسست بهدف توفير حلول عملية وسريعة تلبي احتياجات الأفراد والشركات والمؤسسات التعليمية في العراق والمنطقة.",
+    abP2:"نؤمن بأن الجودة لا يجب أن تكون مكلفة، لذلك نحرص على تقديم خدماتنا بأسعار في متناول الجميع دون أي تنازل عن مستوى الدقة والاحترافية. فريقنا يتكون من متخصصين ذوي خبرة وكفاءة عالية في مجالاتهم.",
+    abP3:"نخدم طيفاً واسعاً من العملاء يشمل الطلاب والأساتذة والشركات والمكاتب والأفراد، ونسعى دائماً لتسليم كل عمل في الوقت المحدد وبأعلى معايير الجودة.",
+    vals:[["الدقة والإتقان","نتعامل مع كل عمل باحترافية تامة وانتباه للتفاصيل"],["السرعة في التسليم","نلتزم بالمواعيد المتفق عليها دون تأخير"],["أسعار متواضعة","خدمات عالية الجودة بأسعار في متناول الجميع"],["خصوصية وأمان","ملفاتك وبياناتك في أمان تام لدينا"]],
+    svTag:"خدماتنا",svTitle:"خدماتنا المتخصصة",
+    svIntro:"نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة — أرسل ملفاتك وتواصل معنا لتنفيذ طلبك بأسرع وقت",
+    srvs:[
+      ["تعديل الصور","أرسل صورك وأخبرنا بالتعديلات المطلوبة، وسنعيدها إليك بشكل احترافي.",["إزالة الخلفية وتغييرها","تحسين جودة الصورة","إضافة نصوص وتصاميم","تعديل الألوان والإضاءة","دمج الصور وتركيبها"]],
+      ["إدخال البيانات في Excel","ندخل بياناتك وننظمها ونعدلها في برنامج Microsoft Excel بدقة عالية.",["إدخال وتنظيم البيانات","إنشاء الجداول والتنسيق","المعادلات والحسابات","الرسوم البيانية والتقارير","تعديل وتحديث الملفات"]],
+      ["تحويل خط اليد","نحول كتابتك اليدوية إلى ملفات Word أو PDF منسقة واحترافية.",["تنضيد أسئلة الامتحانات","كتابة وتنسيق الكتب","المجلات والمقالات العلمية","الأبحاث والرسائل الجامعية","تسليم بصيغة Word أو PDF"]],
+      ["تعديل ومونتاج الفيديو","نقدم خدمات مونتاج وتعديل الفيديو بجودة عالية لمختلف الأغراض.",["مونتاج وتقطيع الفيديو","إضافة موسيقى ومؤثرات","إضافة نصوص وترجمة","تحسين جودة الصورة والصوت","إنتاج ريلز وفيديوهات قصيرة"]]
+    ],
+    dpTag:"الإيداع",dpTitle:"طرق الإيداع والدفع",dpSub:"نوفر لكم طرق دفع متعددة ومريحة لإتمام معاملاتكم بسهولة",
+    deps:[["زين كاش","ادفع بسهولة عبر محفظة زين كاش الإلكترونية بدون رسوم إضافية"],["سوبر كي","الدفع عبر منصة سوبر كي الإلكترونية بسرعة وأمان"],["ويسترن يونيون","التحويل الدولي عبر ويسترن يونيون من أي مكان في العالم"],["حوالة داخلية","تحويل مباشر عبر شركات الحوالة الداخلية في جميع محافظات العراق"],["طرق أخرى","هل لديك طريقة دفع أخرى؟ تواصل معنا وسنجد الحل المناسب لك"]],
+    dpContact:"تواصل معنا",dpNote:"💡 لأي استفسار حول طرق الدفع أو لمعرفة أرقام الحسابات، تواصل معنا مباشرة وسنرد عليك في أقرب وقت.",dpCta:"📞 تواصل معنا الآن",
+    ctTag:"تواصل معنا",ctTitle:"نسعد بخدمتك",
+    ctDesc:"هل لديك طلب أو استفسار؟ أرسل لنا تفاصيل طلبك وسيرد عليك فريقنا في أقرب وقت ممكن.",
+    ctAddr:"النجف الأشرف، العراق",ctWa:"واتساب متاح للتواصل",ctHours:"يومياً ٩ص – ١٠م",
+    flName:"الاسم الكامل",flPhone:"رقم الهاتف / واتساب",flSrv:"الخدمة المطلوبة",flMsg:"تفاصيل الطلب",
+    opts:["تعديل الصور","إدخال البيانات في Excel","تحويل خط اليد إلى Word/PDF","تعديل ومونتاج الفيديو","استفسار عن الإيداع","خدمة أخرى"],
+    submit:"إرسال الطلب ⚡",success:"✅ تم استلام طلبك! سنتواصل معك قريباً جداً.",
+    ftName:"خدمات سام",ftTxt:"جميع الحقوق محفوظة © 2025 | نقدم لكم الخدمات من قبل المحترفين وبدقة وسرعة عالية وبأجور متواضعة"
+  },
+  en:{
+    dir:"ltr",lang:"en",
+    logo:"Sam Services",
+    nav:["Home","About","Services","Deposit","Contact"],
+    badge:"⚡ Professional & Fast Services",
+    heroTitle:"Sam Services\nUnmatched Quality at Affordable Prices",
+    heroDesc:"We provide services by professionals with high accuracy, speed, and modest fees. Photo editing, Excel data, handwriting conversion, video editing and more.",
+    cta1:"Our Services",cta2:"Contact Us",
+    stats:["Happy Clients","Specialized Services","Hour Fast Delivery"],
+    abTag:"About",abTitle:"About Us — Sam Services",
+    abSub:"Services by professionals with high accuracy, speed, and affordable prices",
+    abP1:"Sam Services is a comprehensive service platform specializing in a wide range of digital and administrative services with high professional quality. Founded to provide practical and fast solutions for individuals, companies, and educational institutions in Iraq and the region.",
+    abP2:"We believe quality doesn't have to be expensive. We provide our services at affordable prices without compromising accuracy or professionalism. Our team consists of highly experienced specialists in their fields.",
+    abP3:"We serve a wide range of clients including students, professors, companies, offices, and individuals, always striving to deliver every job on time with the highest quality standards.",
+    vals:[["Accuracy & Excellence","We handle every job with full professionalism and attention to detail"],["Fast Delivery","We commit to agreed deadlines without delay"],["Affordable Prices","High-quality services at prices everyone can afford"],["Privacy & Security","Your files and data are completely safe with us"]],
+    svTag:"Services",svTitle:"Our Specialized Services",
+    svIntro:"Services by professionals with high accuracy, speed, and affordable prices — send your files and contact us to execute your order as fast as possible",
+    srvs:[
+      ["Photo Editing","Send us your photos and tell us what edits you need, we'll return them professionally.",["Background removal & replacement","Image quality enhancement","Adding text & designs","Color & lighting adjustments","Image merging & compositing"]],
+      ["Excel Data Entry","We enter, organize, and edit your data in Microsoft Excel with high accuracy.",["Data entry & organization","Table creation & formatting","Formulas & calculations","Charts & reports","File editing & updating"]],
+      ["Handwriting Conversion","We convert your handwritten text into formatted Word or PDF files.",["Typesetting exam questions","Book writing & formatting","Journals & scientific articles","Research & academic theses","Delivery in Word or PDF format"]],
+      ["Video Editing & Montage","We provide video editing and montage services with high quality for various purposes.",["Video montage & cutting","Adding music & effects","Adding text & subtitles","Image & audio quality enhancement","Reels & short video production"]]
+    ],
+    dpTag:"Deposit",dpTitle:"Payment Methods",dpSub:"We provide multiple convenient payment methods for easy transactions",
+    deps:[["Zain Cash","Pay easily via Zain Cash e-wallet with no extra fees"],["Super K","Payment via Super K electronic platform with speed and security"],["Western Union","International transfer via Western Union from anywhere in the world"],["Domestic Transfer","Direct transfer via domestic remittance companies across all Iraqi governorates"],["Other Methods","Do you have another payment method? Contact us and we'll find the right solution"]],
+    dpContact:"Contact Us",dpNote:"💡 For any inquiries about payment methods or account numbers, contact us directly and we'll reply as soon as possible.",dpCta:"📞 Contact Us Now",
+    ctTag:"Contact",ctTitle:"Happy to Serve You",
+    ctDesc:"Do you have a request or inquiry? Send us your details and our team will respond as soon as possible.",
+    ctAddr:"Najaf, Iraq",ctWa:"WhatsApp available for contact",ctHours:"Daily 9am – 10pm",
+    flName:"Full Name",flPhone:"Phone / WhatsApp",flSrv:"Required Service",flMsg:"Request Details",
+    opts:["Photo Editing","Excel Data Entry","Handwriting to Word/PDF","Video Editing & Montage","Deposit Inquiry","Other Service"],
+    submit:"Send Request ⚡",success:"✅ Your request received! We'll contact you very soon.",
+    ftName:"Sam Services",ftTxt:"All Rights Reserved © 2025 | Services by professionals with high accuracy, speed, and affordable prices"
+  },
+  ku:{
+    dir:"rtl",lang:"ku",
+    logo:"خزمەتگوزارییەکانی سام",
+    nav:["سەرەکی","دەربارەمان","خزمەتگوزارییەکان","ئەیداع","پەیوەندی"],
+    badge:"⚡ خزمەتگوزاری پیشەیی و خێرا",
+    heroTitle:"خزمەتگوزارییەکانی سام\nکوالیتیی بێهاوتا بە نرخی گونجاو",
+    heroDesc:"خزمەتگوزاری پیشەیی لەلایەن پسپۆڕەکانەوە بە تەقەزانە، خێرایی و کرێی کەم. دەستکاریکردنی وێنە، داتای Excel، گواستنەوەی دەستخەت، مۆنتاژی ڤیدیۆ و زیاتر.",
+    cta1:"خزمەتگوزارییەکانمان",cta2:"پەیوەندیمان پێوە بکە",
+    stats:["کڕیاری خۆشحاڵ","خزمەتگوزاری تایبەت","کاتژمێر گەیاندنی خێرا"],
+    abTag:"دەربارەمان",abTitle:"کێین — خزمەتگوزارییەکانی سام",
+    abSub:"خزمەتگوزاری لەلایەن پسپۆڕەکانەوە بە تەقەزانە، خێرایی و کرێی کەم",
+    abP1:"خزمەتگوزارییەکانی سام پلاتفۆرمێکی خزمەتگوزاری تەواوە، تایبەت بە پێشکەشکردنی جۆرە خزمەتگوزارییە دیجیتاڵ و بەڕێوەبەرانەی جیاجیا بە کوالیتیی پیشەیی بەرز. دامەزراوە بۆ پێشکەشکردنی چارەسەری پراکتیکی و خێرا.",
+    abP2:"باوەڕمان هەیە کوالیتی پێویستی نییە گران بێت. خزمەتگوزارییەکانمان بە نرخی گونجاو پێشکەش دەکەین بێ هیچ کەمکردنەوەیەک لە ئاستی تەقەزانە و پیشەیی.",
+    abP3:"خزمەتیان دەکەین بۆ کڕیاری زۆر لە خوێندکار، مامۆستا، کۆمپانیا، ئۆفیس و تاکەکەس، هەمیشە هەوڵ دەدەین هەر کارێک لە کاتی دیاریکراودا گەیاندن.",
+    vals:[["تەقەزانە و ئایینداری","لەگەڵ هەر کارێکدا بە پیشەییتمامی و سەرنجدانی وردەکارییەکان مامەڵە دەکەین"],["خێرایی لە گەیاندندا","پابەند بە کاتی مێژووکراوی دەبین بێ دواکەوتن"],["نرخی کەم","خزمەتگوزاری کوالیتیی بەرز بە نرخی گونجاو بۆ هەمووان"],["نهێنی و ئارامی","فایلەکان و داتاکانت بە تەواوی لای ئێمەدا ئارامن"]],
+    svTag:"خزمەتگوزارییەکان",svTitle:"خزمەتگوزارییە تایبەتەکانمان",
+    svIntro:"خزمەتگوزاری لەلایەن پسپۆڕەکانەوە بە تەقەزانە، خێرایی و کرێی کەم — فایلەکانت بنێرە و پەیوەندیمان پێوە بکە",
+    srvs:[
+      ["دەستکاریکردنی وێنە","وێنەکانت بنێرە و دەستکارییەکانی داواکراو بڵێ، بە شێوەیەکی پیشەیی دەیگەڕێنینەوە.",["سڕینەوەی باکگراوند و گۆڕینی","باشترکردنی کوالیتی وێنە","زیادکردنی دەق و دیزاین","دەستکاریکردنی ڕەنگ و ڕووناکی","دانانی وێنەکان تێکەڵ"]],
+      ["داخلکردنی داتا لە Excel","داتاکانت دادەخەین، ڕێکخستن دەکەین و دەستکاری دەکەین لە Microsoft Excel بە تەقەزانەی بەرز.",["داخلکردن و ڕێکخستنی داتا","دروستکردنی خشتە و فۆرماتکردن","فۆرمولە و ژمارەکردنەکان","چارت و ڕاپۆرتەکان","دەستکاریکردن و نوێکردنەوەی فایلەکان"]],
+      ["گواستنەوەی دەستخەت","دەستخەتەکانت دەگوازینەوە بۆ فایلی Word یان PDF دابەشکراو و پیشەیی.",["نوسینی پرسیارەکانی تاقیکردنەوە","نوسین و فۆرماتکردنی کتێب","گۆڤار و وتارە زانستییەکان","توێژینەوە و ئەکادیمی","گەیاندن بە فۆرماتی Word یان PDF"]],
+      ["دەستکاریکردن و مۆنتاژی ڤیدیۆ","خزمەتگوزاری مۆنتاژ و دەستکاریکردنی ڤیدیۆ بە کوالیتیی بەرز پێشکەش دەکەین.",["مۆنتاژ و بڕینی ڤیدیۆ","زیادکردنی موزیک و ئیفێکت","زیادکردنی دەق و ژێرنووس","باشترکردنی کوالیتی وێنە و دەنگ","دروستکردنی ریلز و ڤیدیۆی کورت"]]
+    ],
+    dpTag:"ئەیداع",dpTitle:"شێوازەکانی دانی پارە",dpSub:"شێوازی دانی پارەی جیاجیا و ئاسان پێشکەش دەکەین بۆ ئاسانکردنی مامەڵەکانتان",
+    deps:[["زەین کاش","بە ئاسانی پارە بدە لە ڕێگای کیسەی ئەلیکترۆنیی زەین کاش بێ کرێی زیادە"],["سوپەر کی","دانی پارە لە ڕێگای پلاتفۆرمی ئەلیکترۆنیی سوپەر کی بە خێرایی و ئارامی"],["وێستەرن یونیۆن","گواستنەوەی نێودەوڵەتی لە ڕێگای وێستەرن یونیۆن لە هەر شوێنێکی جیهاندا"],["حەوالەی ناوخۆیی","گواستنەوەی ڕاستەوخۆ لە ڕێگای کۆمپانیاکانی حەوالەی ناوخۆیی لە هەموو پارێزگاکانی عێراق"],["شێوازی تر","شێوازی دانی پارەی تری هەیت؟ پەیوەندیمان پێوە بکە چارەسەری گونجاو دەدۆزینەوە"]],
+    dpContact:"پەیوەندی",dpNote:"💡 بۆ هەر پرسیارێک دەربارەی شێوازەکانی دانی پارە یان ژمارەی ئەکاونتەکان، ڕاستەوخۆ پەیوەندیمان پێوە بکە.",dpCta:"📞 ئێستا پەیوەندیمان پێوە بکە",
+    ctTag:"پەیوەندی",ctTitle:"خۆشحاڵ دەبین خزمەتتان بکەین",
+    ctDesc:"داواکارییەک یان پرسیارت هەیە؟ وردەکارییەکانی داواکاریەکەت بنێرە و تیمەکەمان هەر زووێک وەڵامت دەداتەوە.",
+    ctAddr:"نەجەف، عێراق",ctWa:"واتساپ بۆ پەیوەندی بەردەستە",ctHours:"ڕۆژانە ٩ ب – ١٠ ئ",
+    flName:"ناوی تەواو",flPhone:"ژمارەی تەلەفۆن / واتساپ",flSrv:"خزمەتگوزاری داواکراو",flMsg:"وردەکارییەکانی داواکاری",
+    opts:["دەستکاریکردنی وێنە","داخلکردنی داتا لە Excel","گواستنەوەی دەستخەت بۆ Word/PDF","دەستکاریکردن و مۆنتاژی ڤیدیۆ","پرسیار دەربارەی ئەیداع","خزمەتگوزاری تر"],
+    submit:"ناردنی داواکاری ⚡",success:"✅ داواکارییەکەت وەرگیرا! بەزووی پەیوەندیت پێوە دەکەین.",
+    ftName:"خزمەتگوزارییەکانی سام",ftTxt:"هەموو مافەکان پارێزراون © 2025 | خزمەتگوزاری لەلایەن پسپۆڕەکانەوە بە تەقەزانە و خێرایی و کرێی کەم"
+  }
+};
+
+let lang='ar';
+
+function setLang(l){
+  lang=l;
+  const t=T[l];
+  document.documentElement.setAttribute('lang',t.lang);
+  document.documentElement.setAttribute('dir',t.dir);
+  document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',['ar','en','ku'][i]===l));
+  set('logo-text',t.logo);
+  const nids=['nav-home','nav-about','nav-services','nav-deposit','nav-contact'];
+  const mids=['m-home','m-about','m-services','m-deposit','m-contact'];
+  nids.forEach((id,i)=>{if(ge(id))ge(id).textContent=t.nav[i];});
+  mids.forEach((id,i)=>{if(ge(id))ge(id).textContent=t.nav[i];});
+  set('h-badge',t.badge);
+  ge('h-title').innerHTML=t.heroTitle.replace('\n','<br>');
+  set('h-desc',t.heroDesc);
+  set('h-cta1',t.cta1);set('h-cta2',t.cta2);
+  set('st1',t.stats[0]);set('st2',t.stats[1]);set('st3',t.stats[2]);
+  set('ab-tag',t.abTag);set('ab-title',t.abTitle);set('ab-sub',t.abSub);
+  set('ab-p1',t.abP1);set('ab-p2',t.abP2);set('ab-p3',t.abP3);
+  [['v1t','v1d'],['v2t','v2d'],['v3t','v3d'],['v4t','v4d']].forEach(([a,b],i)=>{set(a,t.vals[i][0]);set(b,t.vals[i][1]);});
+  set('sv-tag',t.svTag);set('sv-title',t.svTitle);set('sv-intro',t.svIntro);
+  ['s1h','s2h','s3h','s4h'].forEach((id,i)=>set(id,t.srvs[i][0]));
+  ['s1p','s2p','s3p','s4p'].forEach((id,i)=>set(id,t.srvs[i][1]));
+  ['s1l','s2l','s3l','s4l'].forEach((id,i)=>{
+    const el=ge(id);if(!el)return;
+    el.innerHTML=t.srvs[i][2].map(x=>`<li>${x}</li>`).join('');
+  });
+  set('dp-tag',t.dpTag);set('dp-title',t.dpTitle);set('dp-sub',t.dpSub);
+  ['dp1n','dp2n','dp3n','dp4n','dp5n'].forEach((id,i)=>set(id,t.deps[i][0]));
+  ['dp1d','dp2d','dp3d','dp4d','dp5d'].forEach((id,i)=>set(id,t.deps[i][1]));
+  set('dp5btn',t.dpContact);set('dp-note',t.dpNote);set('dp-ctabtn',t.dpCta);
+  set('ct-tag',t.ctTag);set('ct-title',t.ctTitle);set('ct-desc',t.ctDesc);
+  set('ct-addr',t.ctAddr);set('ct-wa',t.ctWa);set('ct-hours',t.ctHours);
+  set('fl-name',t.flName);set('fl-phone',t.flPhone);set('fl-srv',t.flSrv);set('fl-msg',t.flMsg);
+  ['o1','o2','o3','o4','o5','o6'].forEach((id,i)=>set(id,t.opts[i]));
+  set('sub-btn',t.submit);
+  set('ft-name',t.ftName);set('ft-txt',t.ftTxt);
+}
+
+function ge(id){return document.getElementById(id);}
+function set(id,txt){const el=ge(id);if(el)el.textContent=txt;}
+
+function showSection(name){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  ge(name).classList.add('active');
+  const secs=['home','about','services','deposit','contact'];
+  ['nav-home','nav-about','nav-services','nav-deposit','nav-contact'].forEach((id,i)=>{
+    const el=ge(id);if(el)el.classList.toggle('active',secs[i]===name);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function sendForm(){
+  const n=ge('inp-name').value,p=ge('inp-phone').value;
+  if(!n||!p)return;
+  const box=ge('success-box');
+  box.textContent=T[lang].success;
+  box.style.display='block';
+  ge('inp-name').value='';ge('inp-phone').value='';ge('inp-msg').value='';
+  setTimeout(()=>box.style.display='none',5000);
+}
+
+function toggleMobile(){ge('mob-menu').classList.toggle('open');}
+function closeMob(){ge('mob-menu').classList.remove('open');}
+</script>
+</body>
+</html>
